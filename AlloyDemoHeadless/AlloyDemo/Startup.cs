@@ -34,7 +34,7 @@ namespace AlloyDemo
 
             // Required by Wangkanai.Detection
             services.AddDetection();
-            services.AddContentDeliveryApi().WithSiteBasedCors();
+            services.AddContentDeliveryApi();
             services.AddCors(opt =>
             {
                 opt.AddPolicy(name: "CorsPolicy", builder =>
