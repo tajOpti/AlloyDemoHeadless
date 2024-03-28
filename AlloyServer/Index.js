@@ -9,7 +9,11 @@ async function getData() {
         const response = await axios.get('https://localhost:5000/api/episerver/v3.0/site', {
             httpsAgent: new https.Agent({ rejectUnauthorized: false }) // Pass the 'rejectUnauthorized' option
         });
+        const response2 = await axios.get('https://localhost:5000/api/episerver/v3.0/content/5', {
+            httpsAgent: new https.Agent({ rejectUnauthorized: false }) // Pass the 'rejectUnauthorized' option
+        });
         console.log(response.data);
+        console.log(response2.data);
     } catch (error) {
         console.error('Error fetching data:', error);
     }

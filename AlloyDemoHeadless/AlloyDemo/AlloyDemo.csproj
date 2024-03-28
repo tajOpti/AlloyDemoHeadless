@@ -14,6 +14,7 @@
   
   <ItemGroup>
     <PackageReference Include="EPiServer.CMS" Version="12.25.1" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.10.2" />
     <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.10.2" />
     <PackageReference Include="Wangkanai.Detection" Version="8.7.0" />
   </ItemGroup>

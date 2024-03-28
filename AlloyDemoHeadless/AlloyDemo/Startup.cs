@@ -30,11 +30,14 @@ namespace AlloyDemo
                 .AddCms()
                 .AddAlloy()
                 .AddAdminUserRegistration()
-                .AddEmbeddedLocalization<Startup>();
+                .AddEmbeddedLocalization<Startup>()
+                .Configure<ExternalApplicationOptions>(o => o.OptimizeForDelivery = true);
 
             // Required by Wangkanai.Detection
             services.AddDetection();
-            services.AddContentDeliveryApi();
+
+            services.AddContentDefinitionsApi();
+            services.AddContentDeliveryApi().WithSiteBasedCors();
             services.AddCors(opt =>
             {
                 opt.AddPolicy(name: "CorsPolicy", builder =>
@@ -60,12 +63,28 @@ namespace AlloyDemo
                 app.UseDeveloperExceptionPage();
             }
 
+
             // Required by Wangkanai.Detection
             app.UseDetection();
             app.UseSession();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Origin", "*");
+                    ctx.Context.Response.Headers.Append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    ctx.Context.Response.Headers["Access-Control-Allow-Origin"] = "*";
+                },
+            });
+
             app.UseRouting();
+
+            app.UseCors(builder => builder
+                     .AllowAnyOrigin()
+                     .AllowAnyMethod()
+                     .AllowAnyHeader());
+
             app.UseAuthentication();
             app.UseAuthorization();
 
