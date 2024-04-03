@@ -18,7 +18,7 @@ const get = (baseURL: any, url: any, parameters: any, headers: any) => {
     });
 };
 
-const applicationPath = document.documentElement.dataset.applicationPath;
+const applicationPath = "https://localhost:5000/" || document.documentElement.dataset.applicationPath;
 const parameters = {
     expand: '*'
 };
@@ -31,7 +31,7 @@ export default {
      *  - updated data after a `beta/contentSaved` message, which has the content link
      */
     getContentByContentLink: (contentLink: number, params = {}, headers: any) =>
-        get(`${applicationPath}api/episerver/v2.0/`, `content/${contentLink}`, { ...parameters, ...params }, headers),
+        get(`${applicationPath}api/episerver/v3.0/`, `content/${contentLink}`, { ...parameters, ...params }, headers),
 
     /**
      * Getting data from ContentDeliveryAPI through regular routing (friendly URLs) was added in ContentDeliveryAPI 2.3.0.
