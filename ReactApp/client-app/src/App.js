@@ -15,15 +15,30 @@ const Navigation = () => (
   </nav>
 );
 
+
 const App = () => {
+
+
+  const routeConfig = [
+    { path: "/", component: Home },
+    { path: "/about", component: About },
+    { path: "/contact", component: Contact },
+    // Add more route definitions as needed
+  ]
+
+  const generateRoutes = routeConfig.map(route => (
+    <Route key={route.path} path={route.path} element={<route.component />} />
+  ));
+
   return (
     <div>
       <h1>Simple React App</h1>
       <Navigation />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} /> */}
+        {generateRoutes}
         <Route path="*" element={<NotFound />} />
       </Routes>
 
