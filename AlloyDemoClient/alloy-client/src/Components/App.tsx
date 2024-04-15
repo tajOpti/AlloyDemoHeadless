@@ -1,62 +1,40 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
 import epi from "../api/epi";
-import { useState, useEffect } from 'react';
 
 
-const App = () => {
+// App.tsx
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+//import authService from './authService';
 
-  const [contentData, setContentData] = useState(null);
+const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const history = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //const url = "https://localhost:5000/api/episerver/v3.0/content/6/?expand=*";
-        const url = "https://localhost:5000/en/whitepaper/";
-        const params = getParamsFromUrl(url);
-        const response = await epi.getContentByContentLink(6, params, {});
-        //const response2 = await epi.getContentByFriendlyUrl(url, params);
-        setContentData(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData()
-  }, [])
+    // Set up configuration
+    // Handle authentication
+  }, []);
 
-  // const getContent = async () => {
-  //   const params = getParamsFromUrl("https://localhost:5000/api/episerver/v3.0/content/1/?expand=*");
-  //   const response = await epi.getContentByContentLink(1, params, {});
-  //   return response.data;
-  // }
-
-  const getParamsFromUrl = (url: string): { [key: string]: string } => {
-    const searchParams = new URLSearchParams(url);
-    const params: { [key: string]: string } = {};
-
-    const iterator = searchParams.entries();
-    let entry = iterator.next();
-    while (!entry.done) {
-      const [key, value] = entry.value;
-      params[key] = value;
-      entry = iterator.next();
-    }
-
-    return params;
+  const login = () => {
+    //authService.login();
   };
 
-  //getContent();
+  const logout = () => {
+    //authService.logout();
+  };
+
   return (
     <div>
-      <h1>Hello</h1>
-      {contentData && (
-        <div>
-          { }
-        </div>
-      )}
+      <nav className="Page-container LoginBar">
+        <button className="btn" onClick={login} style={{ display: !isLoggedIn ? 'block' : 'none' }}>Login</button>
+        <button className="btn" onClick={logout} style={{ display: isLoggedIn ? 'block' : 'none' }}>{username}, Logout</button>
+      </nav>
+      {/* Router View */}
     </div>
-  )
+  );
 };
 
 export default App;
