@@ -18,6 +18,11 @@ const Navigation = () => (
   </nav>
 );
 
+const App = () => {
+  return (
+    <>hello</>
+  )
+}
 
 // const App = () => {
 
@@ -84,51 +89,51 @@ const Navigation = () => (
 //   );
 // };
 
-const App = () => {
+// const App = () => {
 
-  const [contentData, setContentData] = useState(null);
+//   const [contentData, setContentData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = "https://localhost:5000/api/episerver/v3.0/content/6/?expand=*";
-        //const url = "https://localhost:5000/en/whitepaper/";
-        const params = getParamsFromUrl(url);
-        const response = await epi.getContentByContentLink(6, params, {});
-        //const response2 = await epi.getContentByFriendlyUrl(url, params);
-        setContentData(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const url = "https://localhost:5000/api/episerver/v3.0/content/6/?expand=*";
+//         //const url = "https://localhost:5000/en/whitepaper/";
+//         const params = getParamsFromUrl(url);
+//         const response = await epi.getContentByContentLink(6, params, {});
+//         //const response2 = await epi.getContentByFriendlyUrl(url, params);
+//         setContentData(response.data);
+//         console.log(response.data);
+//       } catch (error) {
+//         console.error('Error fetching data:', error);
+//       }
+//     };
 
-    fetchData()
-  }, [])
+//     fetchData()
+//   }, [])
 
-  const getParamsFromUrl = (url: string): { [key: string]: string } => {
-    const searchParams = new URLSearchParams(url);
-    const params: { [key: string]: string } = {};
+//   const getParamsFromUrl = (url: string): { [key: string]: string } => {
+//     const searchParams = new URLSearchParams(url);
+//     const params: { [key: string]: string } = {};
 
-    const iterator = searchParams.entries();
-    let entry = iterator.next();
-    while (!entry.done) {
-      const [key, value] = entry.value;
-      params[key] = value;
-      entry = iterator.next();
-    }
+//     const iterator = searchParams.entries();
+//     let entry = iterator.next();
+//     while (!entry.done) {
+//       const [key, value] = entry.value;
+//       params[key] = value;
+//       entry = iterator.next();
+//     }
 
-    return params;
-  };
+//     return params;
+//   };
 
-  //getContent();
-  return (
-    <div>
-      <h1>Hello</h1>
-      {/* Render ContentView if contentData is not null */}
-      {contentData && <ContentView data={contentData} />}
-    </div>
-  )
-};
+//   //getContent();
+//   return (
+//     <div>
+//       <h1>Hello</h1>
+//       {/* Render ContentView if contentData is not null */}
+//       {contentData && <ContentView data={contentData} />}
+//     </div>
+//   )
+// };
 
 export default App;
