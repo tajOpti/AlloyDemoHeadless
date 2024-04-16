@@ -166,18 +166,20 @@ const ContentView: React.FC<{ data: Content }> = ({ data }) => (
 
         Main Content Area
 
-        {/* {data.mainContentArea && (
+
+        {data.mainContentArea && (
             <div>
                 {data.mainContentArea.expandedValue.map((contents, index) => (
-                    <div key={index}>
-                        {<><img src={contents.image.value.url} alt="Page Image" className="page-image" /></>}
-                        {data.pageImage && data.pageImage.value && data.pageImage.value.url && (
-                            <img src={data.pageImage.value.url} alt="Page Image" className="page-image" />
-                        )}
-                    </div>
+                    <>{contents}</>
+                    // <div key={index}>
+                    //     {<><img src={contents.image.value.url} alt="Page Image" className="page-image" /></>}
+                    //     {data.pageImage && data.pageImage.value && data.pageImage.value.url && (
+                    //         <img src={data.pageImage.value.url} alt="Page Image" className="page-image" />
+                    //     )}
+                    // </div>
                 ))}
             </div>
-        )} */}
+        )}
         {/* Related Content Area */}
         {/* {data.relatedContentArea && ( */}
         <div>
