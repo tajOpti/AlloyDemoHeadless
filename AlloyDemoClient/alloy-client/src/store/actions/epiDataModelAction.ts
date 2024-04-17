@@ -1,10 +1,12 @@
 // actions/epiDataModelActions.ts
 
-export const EPI_DATA_MODEL_UPDATE = 'EPI_DATA_MODEL_UPDATE'; // Define and export the action type constant
-
+// Import statements should be placed here at the top of the file
 import { ContentResolver, ResolvedContentStatus, ContextMode } from '@episerver/content-delivery';
 import { UPDATE_MODEL } from '../Types';
-import { updateEpiContextAction } from '../actions/epiContextAction'; // Import the action creator for updating the epi context
+import { updateEpiContextAction } from '../actions/epiContextAction';
+
+// Rest of the code follows here
+export const EPI_DATA_MODEL_UPDATE = 'EPI_DATA_MODEL_UPDATE';
 
 export const updateModelAction = (payload: any) => ({
     type: UPDATE_MODEL,
